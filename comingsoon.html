@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon - Travus</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Montserrat:wght@400;600&family=Nunito:wght@300;400&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E3A5F",
+              secondary: "#2CA6A4",
+              accent: "#F76707",
+              neutral: "#E5E5E5",
+              dark: "#24292E",
+            },
+            fontFamily: {
+              heading: ["Poppins", "Montserrat", "sans-serif"],
+              body: ["Nunito", "Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Nunito", "Roboto", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-neutral text-dark">
+    <!-- Navigation Bar -->
+    <nav class="bg-primary text-white p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold font-heading">Travus</h1>
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="index.html" class="hover:text-secondary">Home</a></li>
+          <li>
+            <a href="long.html" class="hover:text-secondary">Long Trips</a>
+          </li>
+          <li>
+            <a href="short.html" class="hover:text-secondary">Short Trips</a>
+          </li>
+          <li>
+            <a href="comingsoon.html" class="hover:text-secondary font-bold"
+              >Contact</a
+            >
+          </li>
+        </ul>
+        <a
+          href="#"
+          class="bg-accent text-white px-4 py-2 rounded-lg font-bold hover:bg-secondary"
+          >Book Now</a
+        >
+      </div>
+    </nav>
+
+    <!-- Coming Soon Page -->
+    <section
+      class="relative h-screen bg-cover bg-center flex flex-col items-center justify-center text-white text-center"
+      style="background-image: url('images/1.jpg')"
+    >
+      <div class="bg-black bg-opacity-50 p-6 rounded-lg w-full max-w-lg">
+        <h1 class="text-5xl font-heading font-bold">Travus is Coming Soon!</h1>
+        <p class="text-lg mt-4">
+          We’re preparing something amazing for your travels. Stay tuned for
+          updates!
+        </p>
+
+        <!-- Countdown Timer -->
+        <div class="mt-6 text-3xl font-bold flex justify-center space-x-6">
+          <div><span id="days" class="block">00</span> Days</div>
+          <div><span id="hours" class="block">00</span> Hours</div>
+          <div><span id="minutes" class="block">00</span> Minutes</div>
+          <div><span id="seconds" class="block">00</span> Secs</div>
+        </div>
+
+        <!-- Email Subscription -->
+        <form class="mt-6">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="p-3 w-full rounded-lg text-dark"
+          />
+          <button
+            class="bg-accent text-white px-6 py-3 rounded-lg font-bold w-full mt-3 hover:bg-secondary"
+          >
+            Notify Me
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Countdown Timer Script -->
+    <script>
+      const launchDate = new Date("March 15, 2025 00:00:00").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = launchDate - now;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+      }
+
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>

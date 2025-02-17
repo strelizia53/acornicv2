@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find a Guide or Companion - Travus</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@400;700&family=Nunito:wght@400;600&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E3A5F",
+              secondary: "#2CA6A4",
+              accent: "#F76707",
+              neutral: "#F8F9FA",
+              dark: "#24292E",
+            },
+            fontFamily: {
+              heading: ["Poppins", "sans-serif"],
+              subheading: ["Montserrat", "sans-serif"],
+              body: ["Nunito", "sans-serif"],
+              text: ["Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-neutral text-dark font-body min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-primary text-white py-4 shadow-lg">
+      <div class="container mx-auto flex justify-between items-center px-6">
+        <a href="index.html" class="text-2xl font-heading font-bold">Travus</a>
+        <ul class="hidden md:flex space-x-6 font-text">
+          <li>
+            <a href="long-trips.html" class="hover:text-accent transition"
+              >Long Trips</a
+            >
+          </li>
+          <li>
+            <a href="short-trips.html" class="hover:text-accent transition"
+              >Short Trips</a
+            >
+          </li>
+        </ul>
+        <a
+          href="booking.html"
+          class="bg-accent px-4 py-2 rounded-md font-semibold hover:bg-orange-600 transition"
+        >
+          Book Now
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="relative flex flex-col justify-center items-center h-[50vh] text-white text-center bg-cover bg-center px-6"
+      style="background-image: url('images/3.jpg')"
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <h1 class="text-5xl md:text-6xl font-heading font-bold mb-4">
+          Find Your Perfect Guide or Companion
+        </h1>
+        <p class="text-lg md:text-xl font-text leading-relaxed">
+          Browse trusted **Tour Guides & Travel Companions** to make your trip
+          smooth & safe.
+        </p>
+      </div>
+    </section>
+
+    <!-- Search & Filter Section -->
+    <section class="py-10 px-6 md:px-20">
+      <h3 class="text-3xl font-subheading font-bold text-center mb-6">
+        Search & Filter
+      </h3>
+
+      <div
+        class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg grid md:grid-cols-3 gap-4"
+      >
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search by name or expertise..."
+          class="col-span-3 md:col-span-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+        />
+
+        <select
+          id="roleFilter"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+        >
+          <option value="">All Roles</option>
+          <option value="Tour Guide">Tour Guide</option>
+          <option value="Companion">Companion</option>
+        </select>
+
+        <select
+          id="locationFilter"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+        >
+          <option value="">All Locations</option>
+          <option value="Colombo">Colombo</option>
+          <option value="Kandy">Kandy</option>
+          <option value="Ella">Ella</option>
+          <option value="Galle">Galle</option>
+          <option value="Sigiriya">Sigiriya</option>
+        </select>
+
+        <select
+          id="genderFilter"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+        >
+          <option value="">All Genders</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+        <select
+          id="languageFilter"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+        >
+          <option value="">All Languages</option>
+          <option value="English">English</option>
+          <option value="Sinhala">Sinhala</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+
+        <select
+          id="vehicleFilter"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+        >
+          <option value="">All Vehicles</option>
+          <option value="Tuk-Tuk">Tuk-Tuk</option>
+          <option value="Car">Car</option>
+          <option value="None">No Vehicle</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Guide & Companion List -->
+    <section class="py-16 px-6 md:px-20 bg-gray-50">
+      <h3 class="text-3xl font-subheading font-bold text-center mb-8">
+        Available Guides & Companions
+      </h3>
+
+      <div
+        id="guideList"
+        class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      >
+        <!-- Tour Guides -->
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Tour Guide"
+          data-location="Colombo"
+          data-gender="Male"
+          data-language="English"
+          data-vehicle="None"
+        >
+          <img src="guides/1.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">John Smith</h4>
+            <p class="text-gray-600 text-sm">Tour Guide - Heritage & Culture</p>
+            <p class="text-gray-700 text-sm">
+              <strong>Location:</strong> Colombo
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> English
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Male</p>
+          </div>
+        </div>
+
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Companion"
+          data-location="Kandy"
+          data-gender="Male"
+          data-language="Sinhala"
+          data-vehicle="None"
+        >
+          <img src="guides/3.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">Amal Wijesinghe</h4>
+            <p class="text-gray-600 text-sm">
+              Travel Companion - Cultural & Temple Tours
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Location:</strong> Kandy
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> Sinhala, English
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Male</p>
+          </div>
+        </div>
+
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Tour Guide"
+          data-location="Sigiriya"
+          data-gender="Male"
+          data-language="English"
+          data-vehicle="None"
+        >
+          <img src="guides/5.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">Michael Fernando</h4>
+            <p class="text-gray-600 text-sm">Tour Guide - Hiking & Adventure</p>
+            <p class="text-gray-700 text-sm">
+              <strong>Location:</strong> Sigiriya
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> English
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Male</p>
+          </div>
+        </div>
+
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Tour Guide"
+          data-location="Nuwara Eliya"
+          data-gender="Female"
+          data-language="English"
+          data-vehicle="None"
+        >
+          <img src="guides/4.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">Dilani Perera</h4>
+            <p class="text-gray-600 text-sm">
+              Tour Guide - Tea Plantation Tours
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Location:</strong> Nuwara Eliya
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> English, Sinhala, Tamil
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Female</p>
+          </div>
+        </div>
+
+        <!-- Travel Companions -->
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Companion"
+          data-location="Ella"
+          data-gender="Male"
+          data-language="Sinhala"
+          data-vehicle="Tuk-Tuk"
+        >
+          <img src="guides/6.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">Sameera Perera</h4>
+            <p class="text-gray-600 text-sm">Travel Companion (Tuk-Tuk)</p>
+            <p class="text-gray-700 text-sm"><strong>Location:</strong> Ella</p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> Sinhala
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Male</p>
+          </div>
+        </div>
+
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Companion"
+          data-location="Galle"
+          data-gender="Female"
+          data-language="English"
+          data-vehicle="Car"
+        >
+          <img src="guides/8.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">Nadeesha Silva</h4>
+            <p class="text-gray-600 text-sm">Travel Companion (Car)</p>
+            <p class="text-gray-700 text-sm">
+              <strong>Location:</strong> Galle
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> English
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Female</p>
+          </div>
+        </div>
+
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Companion"
+          data-location="Colombo"
+          data-gender="Male"
+          data-language="Tamil"
+          data-vehicle="Tuk-Tuk"
+        >
+          <img src="guides/7.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">Arjun Kumar</h4>
+            <p class="text-gray-600 text-sm">Travel Companion (Tuk-Tuk)</p>
+            <p class="text-gray-700 text-sm">
+              <strong>Location:</strong> Colombo
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> Tamil, English
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Male</p>
+          </div>
+        </div>
+
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Companion"
+          data-location="Sigiriya"
+          data-gender="Female"
+          data-language="Sinhala"
+          data-vehicle="Car"
+        >
+          <img src="guides/2.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">Shanika Ratnayake</h4>
+            <p class="text-gray-600 text-sm">Travel Companion (Car)</p>
+            <p class="text-gray-700 text-sm">
+              <strong>Location:</strong> Sigiriya
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> Sinhala
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Female</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function filterGuides() {
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        document.querySelectorAll(".guide-card").forEach((card) => {
+          const matches = card.innerText.toLowerCase().includes(query);
+          card.style.display = matches ? "block" : "none";
+        });
+      }
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", filterGuides);
+    </script>
+  </body>
+</html>

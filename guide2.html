@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find a Guide or Companion - Travus</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@400;700&family=Nunito:wght@400;600&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E3A5F",
+              secondary: "#2CA6A4",
+              accent: "#F76707",
+              neutral: "#F8F9FA",
+              dark: "#24292E",
+            },
+            fontFamily: {
+              heading: ["Poppins", "sans-serif"],
+              subheading: ["Montserrat", "sans-serif"],
+              body: ["Nunito", "sans-serif"],
+              text: ["Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-neutral text-dark font-body min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-primary text-white py-4 shadow-lg">
+      <div class="container mx-auto flex justify-between items-center px-6">
+        <a href="index.html" class="text-2xl font-heading font-bold">Travus</a>
+        <ul class="hidden md:flex space-x-6 font-text">
+          <li>
+            <a href="long-trips.html" class="hover:text-accent transition"
+              >Long Trips</a
+            >
+          </li>
+          <li>
+            <a href="short-trips.html" class="hover:text-accent transition"
+              >Short Trips</a
+            >
+          </li>
+        </ul>
+        <a
+          href="booking.html"
+          class="bg-accent px-4 py-2 rounded-md font-semibold hover:bg-orange-600 transition"
+        >
+          Book Now
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="relative flex flex-col justify-center items-center h-[50vh] text-white text-center bg-cover bg-center px-6"
+      style="background-image: url('images/3.jpg')"
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <h1 class="text-5xl md:text-6xl font-heading font-bold mb-4">
+          Find Your Perfect Guide or Companion
+        </h1>
+        <p class="text-lg md:text-xl font-text leading-relaxed">
+          Browse trusted <strong>Tour Guides & Travel Companions</strong> to
+          make your trip smooth & safe.
+        </p>
+      </div>
+    </section>
+    <!-- Guide & Companion List -->
+    <section class="py-16 px-6 md:px-20 bg-gray-50">
+      <h3 class="text-3xl font-subheading font-bold text-center mb-8">
+        Available Guides & Companions
+      </h3>
+
+      <div
+        id="guideList"
+        class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      >
+        <!-- Tour Guides -->
+        <div
+          class="guide-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105"
+          data-role="Tour Guide"
+          data-location="Colombo"
+          data-gender="Male"
+          data-language="English"
+          data-vehicle="None"
+        >
+          <img src="guides/1.jpg" class="w-full h-52 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-heading font-bold">John Smith</h4>
+            <p class="text-gray-600 text-sm">Tour Guide - Heritage & Culture</p>
+            <p class="text-gray-700 text-sm">
+              <strong>Location:</strong> Colombo
+            </p>
+            <p class="text-gray-700 text-sm">
+              <strong>Languages:</strong> English
+            </p>
+            <p class="text-gray-700 text-sm"><strong>Gender:</strong> Male</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      // Function to extract URL parameters
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          location: params.get("location"),
+          tripDuration: params.get("tripDuration"),
+          gender: params.get("gender"),
+          ageGroup: params.get("ageGroup"),
+          language: params.get("language"),
+        };
+      }
+
+      function filterGuides() {
+        const filters = getQueryParams();
+        document.querySelectorAll(".guide-card").forEach((card) => {
+          const cardLocation = card.dataset.location;
+          const cardGender = card.dataset.gender;
+          const cardLanguage = card.dataset.language;
+
+          const matchesLocation =
+            !filters.location || cardLocation === filters.location;
+          const matchesGender =
+            filters.gender === "anyone" ||
+            !filters.gender ||
+            cardGender === filters.gender;
+          const matchesLanguage =
+            !filters.language || cardLanguage.includes(filters.language);
+
+          card.style.display =
+            matchesLocation && matchesGender && matchesLanguage
+              ? "block"
+              : "none";
+        });
+
+        // Display the selected filters at the top of the page
+        document.getElementById("selectedFilters").innerHTML = `
+                <p class="text-lg"><strong>Location:</strong> ${
+                  filters.location || "Any"
+                }</p>
+                <p class="text-lg"><strong>Trip Duration:</strong> ${
+                  filters.tripDuration || "Any"
+                }</p>
+                <p class="text-lg"><strong>Preferred Gender:</strong> ${
+                  filters.gender === "anyone" ? "Any" : filters.gender || "Any"
+                }</p>
+                <p class="text-lg"><strong>Language:</strong> ${
+                  filters.language || "Any"
+                }</p>
+            `;
+      }
+
+      // Run filter function on page load
+      document.addEventListener("DOMContentLoaded", filterGuides);
+    </script>
+  </body>
+</html>
